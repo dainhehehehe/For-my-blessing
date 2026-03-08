@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Love ❤️</title>
+<style>
+/* Basic page styling */
+body {
+  background: #ffd6e0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  padding: 50px;
+}
+
+/* Letter box */
+.box {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  max-width: 750px;
+  margin: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  position: relative;
+  z-index: 2;
+}
+
+/* Letter heading */
+h1 {
+  color: #ff2e63;
+  text-align: center;
+}
+
+/* Letter paragraphs */
+p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #333;
+  text-align: left;
+}
+
+/* Typing effect */
+.typing {
+  border-right: .1em solid #ff2e63;
+  white-space: pre-wrap;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(-45deg);
+  animation: float 6s infinite linear;
+  z-index: 1;
+}
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+  100% { transform: translateY(-800px) rotate(-45deg); opacity: 0; }
+}
+
+/* Play/Pause button */
+button {
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  background: #ff2e63;
+  color: white;
+  cursor: pointer;
+}
+button:hover {
+  background: #ff4d6d;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Background music -->
+<audio id="bg-music" autoplay loop>
+  <source src="https://cdn.pixabay.com/download/audio/2023/03/10/audio_450549.mp3?filename=gehra-hua-from-dhurandhar-450549.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<button onclick="music.paused ? music.play() : music.pause()">🎵 Play/Pause Music</button>
+
+<!-- Hearts container -->
+<div id="hearts-container"></div>
+
+<!-- Love letter box -->
+<div class="box">
+  <h1>Happy Women's Day My Love ❤️</h1>
+  <p class="typing" id="love-text"></p>
+  <p><b>Forever yours ❤️</b></p>
+</div>
+
+<script>
+// Love letter text
+const letter = `Today is a special day, but honestly I don’t need a special day to show my love because I show you every single day. But today I want to remind you how important you are and how much you mean to me.
+You are the happiest part of my life and the most beautiful blessing Allah has given me. You are truly the best thing Allah has blessed me with.
+Your kindness, your care, and the way you always try to keep everyone happy shows how pure and amazing your heart is.
+Your happiness means everything to me. I will always love you sweetheart. You are my heart, my soul, and my everything.
+May Allah always bless you and keep you happy. You are the most special person in my life and I am forever grateful for you.
+Happy Women's Day to the most beautiful, kind, and amazing person in my life.`;
+
+// Typing effect
+let index = 0;
+function typeLetter() {
+  if(index < letter.length){
+    document.getElementById('love-text').innerHTML += letter.charAt(index);
+    index++;
+    setTimeout(typeLetter, 40);
+  }
+}
+typeLetter();
+
+// Floating hearts creation
+function createHeart(){
+  const heart = document.createElement('div');
+  heart.classList.add('heart');
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.animationDuration = (4 + Math.random() * 3) + 's';
+  heart.style.width = heart.style.height = (10 + Math.random()*20) + 'px';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 500);
+
+// Background music control
+let music = document.getElementById("bg-music");
+music.volume = 0.4;
+</script>
+
+</body>
+</html>
